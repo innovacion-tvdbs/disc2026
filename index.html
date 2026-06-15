@@ -13,7 +13,7 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    height:100vh;
+    min-height:100vh;
     margin:0;
 }
 
@@ -27,12 +27,18 @@ h1{
     font-size:3rem;
 }
 
+h2{
+    line-height:1.3;
+}
+
 input{
     width:100%;
     padding:20px;
     font-size:2rem;
     border-radius:12px;
     border:none;
+    text-align:center;
+    text-transform:uppercase;
 }
 
 button{
@@ -42,6 +48,14 @@ button{
     border:none;
     border-radius:12px;
     cursor:pointer;
+    font-weight:bold;
+}
+
+.message{
+    margin-top:20px;
+    font-size:1.2rem;
+    min-height:28px;
+    color:#4FD1C5;
 }
 </style>
 </head>
@@ -57,13 +71,62 @@ In a word, which 1 challenge, if solved today,
 would most positively impact your work?
 </h2>
 
-<input type="text" maxlength="25">
+<input id="wordInput" type="text" maxlength="25" autocomplete="off">
 
 <br>
 
-<button>SEND</button>
+<button id="sendBtn" onclick="sendWord()">SEND</button>
+
+<div id="message" class="message"></div>
 
 </div>
+
+<script>
+const API_URL = "https://script.google.com/macros/s/AKfycbxkEdgYFPyRn7wynqq8U_7L1dydX9N3G-H-1-P6d5chTd1cDoh4oQqq9qgFea0nDnmAJg/exec";
+
+async function sendWord(){
+
+    const input = document.getElementById("wordInput");
+    const button = document.getElementById("sendBtn");
+    const message = document.getElementById("message");
+
+    const word = input.value.trim();
+
+    if(!word){
+        message.textContent = "Please enter one word.";
+        return;
+    }
+
+    button.disabled = true;
+    button.textContent = "SENDING...";
+    message.textContent = "";
+
+    try{
+        await fetch(API_URL,{
+            method:"POST",
+            mode:"no-cors",
+            body:JSON.stringify({
+                word:word
+            })
+        });
+
+        input.value = "";
+        message.textContent = "Thank you!";
+
+    }catch(error){
+        message.textContent = "Connection error. Please try again.";
+    }
+
+    button.disabled = false;
+    button.textContent = "SEND";
+}
+
+document.getElementById("wordInput").addEventListener("keydown", function(e){
+    if(e.key === "Enter"){
+        sendWord();
+    }
+});
+</script>
 
 </body>
 </html>
