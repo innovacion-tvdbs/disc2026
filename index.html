@@ -6,6 +6,10 @@
 <title>DISC 2026</title>
 
 <style>
+*{
+    box-sizing:border-box;
+}
+
 body{
     font-family:Arial,sans-serif;
     background:#08111B;
@@ -15,61 +19,102 @@ body{
     align-items:center;
     min-height:100vh;
     margin:0;
-
-    <div class="word-cloud">
-      <span class="w1">DIABETES</span>
-      <span class="w2">CARE</span>
-      <span class="w3">INSULIN</span>
-      <span class="w4">CGM</span>
-      <span class="w5">EDUCATION</span>
-      <span class="w6">ACCESS</span>
-      <span class="w7">PREVENTION</span>
-      <span class="w8">DATA</span>
-      <span class="w9">PATIENTS</span>
-      <span class="w10">OUTCOMES</span>
-      <span class="w11">MONITORING</span>
-      <span class="w12">HEALTH</span>
-      <span class="w13">AI</span>
-      <span class="w14">PERSONALIZATION</span>
-      <span class="w15">ADHERENCE</span>
-    </div>
-
-
-    
+    overflow:hidden;
 }
 
+.word-cloud{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:0;
+}
+
+.word-cloud span{
+    position:absolute;
+    opacity:0.13;
+    font-weight:900;
+    white-space:nowrap;
+    text-transform:uppercase;
+    filter:blur(.1px);
+}
+
+.w1{left:4%;top:8%;font-size:110px;color:#4FD1C5;}
+.w2{left:62%;top:7%;font-size:88px;color:#ffffff;}
+.w3{left:18%;top:28%;font-size:82px;color:#4FD1C5;}
+.w4{left:76%;top:25%;font-size:58px;color:#ffffff;}
+.w5{left:8%;top:55%;font-size:76px;color:#4FD1C5;}
+.w6{left:58%;top:60%;font-size:105px;color:#ffffff;}
+.w7{left:32%;top:76%;font-size:78px;color:#4FD1C5;}
+.w8{left:76%;top:78%;font-size:64px;color:#ffffff;}
+.w9{left:38%;top:38%;font-size:130px;color:#4FD1C5;}
+.w10{left:5%;top:83%;font-size:58px;color:#ffffff;}
+.w11{left:64%;top:43%;font-size:72px;color:#4FD1C5;}
+.w12{left:25%;top:13%;font-size:92px;color:#ffffff;}
+.w13{left:84%;top:13%;font-size:62px;color:#4FD1C5;}
+.w14{left:42%;top:3%;font-size:60px;color:#ffffff;}
+.w15{left:80%;top:52%;font-size:72px;color:#4FD1C5;}
+.w16{left:14%;top:70%;font-size:64px;color:#ffffff;}
+.w17{left:55%;top:82%;font-size:70px;color:#4FD1C5;}
+.w18{left:3%;top:38%;font-size:62px;color:#ffffff;}
+.w19{left:70%;top:70%;font-size:56px;color:#4FD1C5;}
+.w20{left:47%;top:22%;font-size:66px;color:#ffffff;}
+
 .card{
+    position:relative;
+    z-index:10;
     width:90%;
-    max-width:700px;
+    max-width:760px;
     text-align:center;
+    padding:34px 30px 38px;
+    border-radius:28px;
+    background:rgba(8,17,27,.78);
+    border:1px solid rgba(255,255,255,.18);
+    box-shadow:0 30px 80px rgba(0,0,0,.45);
+    backdrop-filter:blur(8px);
 }
 
 h1{
     font-size:3rem;
+    margin:0 0 26px;
 }
 
 h2{
-    line-height:1.3;
+    line-height:1.35;
+    font-size:1.35rem;
+    margin:0 0 28px;
 }
 
 input{
     width:100%;
     padding:20px;
     font-size:2rem;
-    border-radius:12px;
+    border-radius:14px;
     border:none;
     text-align:center;
     text-transform:uppercase;
+    outline:none;
+}
+
+input:focus{
+    box-shadow:0 0 0 4px rgba(79,209,197,.35);
 }
 
 button{
-    margin-top:20px;
-    padding:20px 40px;
+    margin-top:22px;
+    padding:20px 46px;
     font-size:1.5rem;
     border:none;
-    border-radius:12px;
+    border-radius:14px;
     cursor:pointer;
     font-weight:bold;
+    background:#ffffff;
+    color:#08111B;
+}
+
+button:disabled{
+    opacity:.6;
+    cursor:not-allowed;
 }
 
 .message{
@@ -77,11 +122,53 @@ button{
     font-size:1.2rem;
     min-height:28px;
     color:#4FD1C5;
+    font-weight:bold;
+}
+
+@media(max-width:600px){
+    h1{
+        font-size:2.35rem;
+    }
+
+    h2{
+        font-size:1.1rem;
+    }
+
+    input{
+        font-size:1.55rem;
+    }
+
+    .word-cloud span{
+        opacity:.09;
+    }
 }
 </style>
 </head>
 
 <body>
+
+<div class="word-cloud">
+    <span class="w1">DIABETES</span>
+    <span class="w2">CARE</span>
+    <span class="w3">INSULIN</span>
+    <span class="w4">CGM</span>
+    <span class="w5">EDUCATION</span>
+    <span class="w6">ACCESS</span>
+    <span class="w7">PREVENTION</span>
+    <span class="w8">DATA</span>
+    <span class="w9">PATIENTS</span>
+    <span class="w10">OUTCOMES</span>
+    <span class="w11">MONITORING</span>
+    <span class="w12">HEALTH</span>
+    <span class="w13">AI</span>
+    <span class="w14">PERSONALIZATION</span>
+    <span class="w15">ADHERENCE</span>
+    <span class="w16">SCREENING</span>
+    <span class="w17">INNOVATION</span>
+    <span class="w18">TREATMENT</span>
+    <span class="w19">TECHNOLOGY</span>
+    <span class="w20">PREVENTION</span>
+</div>
 
 <div class="card">
 
@@ -92,7 +179,7 @@ In a word, which 1 challenge, if solved today,
 would most positively impact your work?
 </h2>
 
-<input id="wordInput" type="text" maxlength="25" autocomplete="off">
+<input id="wordInput" type="text" maxlength="25" autocomplete="off" placeholder="Type one word">
 
 <br>
 
@@ -111,7 +198,7 @@ async function sendWord(){
     const button = document.getElementById("sendBtn");
     const message = document.getElementById("message");
 
-    const word = input.value.trim();
+    const word = input.value.trim().toUpperCase();
 
     if(!word){
         message.textContent = "Please enter one word.";
